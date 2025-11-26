@@ -24,7 +24,7 @@ export default function DatePickerCarousel() {
   const dates = eachDayOfInterval({ start: now, end: sixWeeksLater });
 
   return (
-    <CarouselContainer>
+    <CarouselContainer paddingY="4">
       {dates.map((date) => {
         const day = format(date, "dd");
         const weekday = daysOfWeek[getDay(date)];

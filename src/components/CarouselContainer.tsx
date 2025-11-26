@@ -3,7 +3,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { useState, useEffect, useCallback } from "react";
 
-export default function CarouselContainer({children}: {children?: React.ReactNode}) {
+export default function CarouselContainer({children, paddingY}: {children?: React.ReactNode, paddingY?: string}) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     dragFree: true,
     containScroll: "trimSnaps",
@@ -60,8 +60,8 @@ export default function CarouselContainer({children}: {children?: React.ReactNod
           />
         </svg>
       </button>
-      <div className="embla w-full overflow-hidden py-4" ref={emblaRef}>
-        <div className="embla__container flex gap-2 items-end">
+      <div className={`embla w-full overflow-hidden ${paddingY ? `py-${paddingY}` : ''}`} ref={emblaRef}>
+        <div className="embla__container w-full flex gap-2 items-end">
             {children}
         </div>
       </div>

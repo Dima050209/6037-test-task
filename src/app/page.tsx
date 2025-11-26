@@ -1,6 +1,7 @@
 import Image from "next/image";
 import iconImage from "../../public/image.png";
 import DatePickerCarousel from "@/components/DatePickerCarousel";
+import TimePickerCarousel from "@/components/TimePickerCarousel";
 
 export default function Home() {
   return (
@@ -70,6 +71,22 @@ export default function Home() {
             </div>
           </div>
           <DatePickerCarousel />
+          <TimePickerCarousel />
+          <button
+            className="
+              flex items-center justify-center
+              px-2 py-[18px] gap-2
+              w-[370px] h-[60px]
+              bg-[#16171B]
+              rounded-full
+              font-poppins font-semibold text-[16px] leading-6
+              tracking-[0.03em]
+              text-white
+              mt-auto mb-10
+            "
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </>
