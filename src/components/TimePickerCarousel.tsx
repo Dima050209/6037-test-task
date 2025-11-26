@@ -3,24 +3,19 @@ import React, { useEffect, useState } from "react";
 import CarouselContainer from "./CarouselContainer";
 import { isSameMinute } from "date-fns/fp";
 
-const generateTimeDates = () => {
-  const times = [];
+function generateTimeSlots() {
+  const slots: Date[] = [];
   const base = new Date();
   base.setHours(0, 0, 0, 0);
 
-  for (let i = 0; i <= 48; i++) {
-    const d = new Date(base.getTime() + i * 15 * 60 * 1000);
-    if (d.getHours() === 12 && d.getMinutes() > 0) break;
-    times.push(d);
-    console.log(d.toLocaleString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    }));
+  for (let i = 0; i < 96; i++) {
+    slots.push(new Date(base));
+    base.setMinutes(base.getMinutes() + 15);
+    console.log(base);
   }
 
-  return times;
-};
+  return slots;
+}
 
 function formatToAmPm(date: Date) {
   return date.toLocaleString("en-US", {
@@ -30,7 +25,7 @@ function formatToAmPm(date: Date) {
   });
 }
 
-const timeSlots = generateTimeDates();
+const timeSlots = generateTimeSlots();
 
 export default function TimePickerCarousel() {
   const [now, setNow] = useState<Date>(new Date());
@@ -43,7 +38,7 @@ export default function TimePickerCarousel() {
 
   return (
     <CarouselContainer>
-      {timeSlots.map((slot) => {
+      {timeSlots.filter((slot) => slot > now).map((slot) => {
         return (
           <button
             key={slot.toISOString()}
