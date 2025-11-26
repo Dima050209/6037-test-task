@@ -86,17 +86,21 @@ export default function Home() {
             />
           )}
           <button
-            className="
+            className={`
               flex items-center justify-center
               px-2 py-[18px] gap-2
               w-[370px] h-[60px]
-              bg-[#16171B]
+              ${
+                !selectedDate || !selectedTime
+                  ? "bg-[#DADBE8] cursor-not-allowed "
+                  : "bg-[#16171B] hover:bg-[#2c2d33] cursor-pointer"
+              }
               rounded-full
               font-poppins font-semibold text-[16px] leading-6
               tracking-[0.03em]
               text-white
               mt-auto mb-10
-            "
+            `}
             disabled={!(selectedDate && selectedTime)}
             onClick={() => {
               if (!selectedDate || !selectedTime) return;
