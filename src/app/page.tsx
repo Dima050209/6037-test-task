@@ -97,6 +97,19 @@ export default function Home() {
               text-white
               mt-auto mb-10
             "
+            disabled={!(selectedDate && selectedTime)}
+            onClick={() => {
+              if (!selectedDate || !selectedTime) return;
+
+              const dateTime = new Date(selectedDate);
+
+              dateTime.setHours(selectedTime.getHours());
+              dateTime.setMinutes(selectedTime.getMinutes());
+              dateTime.setSeconds(0);
+              dateTime.setMilliseconds(0);
+
+              console.log(dateTime.getTime());
+            }}
           >
             Confirm
           </button>
