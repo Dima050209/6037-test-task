@@ -9,16 +9,31 @@ import {
 import { useState, useEffect } from "react";
 import CarouselContainer from "./CarouselContainer";
 
+interface DatePickerCarouselProps {
+  onDateSelect: (date: Date | null) => void;
+  selectedDate: Date | null;
+}
+
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export default function DatePickerCarousel() {
+export default function DatePickerCarousel({
+  onDateSelect,
+  selectedDate,
+}: DatePickerCarouselProps) {
   const [now, setNow] = useState<Date>(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 60000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleDateSelect = (date: Date) => {
+    if (selectedDate && isSameDay(date, selectedDate)) {
+      onDateSelect(null);
+      return;
+    }
+    onDateSelect(date);
+  };
 
   const sixWeeksLater = addDays(now, 42);
   const dates = eachDayOfInterval({ start: now, end: sixWeeksLater });
@@ -38,7 +53,7 @@ export default function DatePickerCarousel() {
           <button
             key={date.toISOString()}
             className="flex flex-col items-start"
-            onClick={() => setSelectedDate(date)}
+            onClick={() => handleDateSelect(date)}
           >
             <div
               className={`

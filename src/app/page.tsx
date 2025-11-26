@@ -1,9 +1,14 @@
+"use client";
 import Image from "next/image";
 import iconImage from "../../public/image.png";
 import DatePickerCarousel from "@/components/DatePickerCarousel";
 import TimePickerCarousel from "@/components/TimePickerCarousel";
+import { useState } from "react";
 
 export default function Home() {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+
   return (
     <>
       <header
@@ -70,8 +75,16 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <DatePickerCarousel />
-          <TimePickerCarousel />
+          <DatePickerCarousel
+            onDateSelect={setSelectedDate}
+            selectedDate={selectedDate}
+          />
+          {selectedDate && (
+            <TimePickerCarousel
+              onTimeSelect={setSelectedTime}
+              selectedTime={selectedTime}
+            />
+          )}
           <button
             className="
               flex items-center justify-center

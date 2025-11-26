@@ -27,14 +27,26 @@ function formatToAmPm(date: Date) {
 
 const timeSlots = generateTimeSlots();
 
-export default function TimePickerCarousel() {
+interface TimePickerCarouselProps {
+    onTimeSelect: (date: Date | null) => void;
+    selectedTime: Date | null;
+}
+
+export default function TimePickerCarousel({onTimeSelect, selectedTime}: TimePickerCarouselProps) {
   const [now, setNow] = useState<Date>(new Date());
-  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 60000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleTimeSelect = (time: Date) => {
+    if(selectedTime && isSameMinute(time, selectedTime)) {
+        onTimeSelect(null);
+        return;
+    }
+    onTimeSelect(time);
+  }
 
   return (
     <CarouselContainer>
@@ -43,7 +55,7 @@ export default function TimePickerCarousel() {
           <button
             key={slot.toISOString()}
             className="flex flex-col items-start"
-            onClick={() => setSelectedTime(slot)}
+            onClick={() => handleTimeSelect(slot)}
           >
             <div
               className={`
