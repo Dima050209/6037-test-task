@@ -1,65 +1,77 @@
 import Image from "next/image";
+import iconImage from "../../public/image.png";
+import DatePickerCarousel from "@/components/DatePickerCarousel";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <header
+        className="
+                box-border
+                absolute left-0 top-0
+                w-full h-20
+                bg-[rgba(0,0,0,0.2)]
+                border-b border-b-[rgba(255,255,255,0.4)]
+                backdrop-blur-[34px]
+              "
+      >
+        <h1
+          className="
+            w-[284px] h-[33px]
+            font-poppins font-semibold not-italic
+            text-[22px] leading-[33px]
+            flex items-center
+            text-white
+            ml-[135px] mt-5
+          "
+        >
+          6037 Venture Partnership
+        </h1>
+      </header>
+      <div className="bg-linear-to-bl from-[#AA580D] via-[#E28F11] to-[#AA580D] min-h-screen">
+        <div
+          className="
+              absolute
+              w-[568px] h-[620px]
+              left-1/2 top-1/2
+              -translate-x-1/2 -translate-y-[calc(50%-5px)]
+              bg-white
+              rounded-2xl
+              flex flex-col items-center
+            "
+        >
+          <div className="flex items-center gap-5 mt-10">
+            <Image src={iconImage} alt="" className="w-[120px] h-auto" />
+            <div className="flex flex-col gap-2 items-start">
+              <h2
+                className="
+                  w-[202px] h-[41px]
+                  font-kaisei font-bold not-italic
+                  text-[28px] leading-[41px]
+                  flex items-center
+                  text-[#16171B]
+                "
+              >
+                Book a Session
+              </h2>
+              <p
+                className="
+                  w-[309px] h-[42px]
+                  font-poppins font-normal not-italic
+                  text-[14px] leading-[21px]
+                  flex items-center
+                  text-[#8F91A1]
+                  order-1 grow-0 flex-none
+                "
+              >
+                Choose a date and time that is convenient for you to e-meet your
+                stylist
+              </p>
+            </div>
+          </div>
+          <DatePickerCarousel />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }
